@@ -1,5 +1,5 @@
 # notes
 
-Here is a collection of random project notes.
-Mainly to help my future self.
-But, maybe you as well.
+Here is a collection of random project notes.<br>
+Mainly to help my future self.<br>
+But, maybe you as well.<br>
