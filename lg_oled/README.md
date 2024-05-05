@@ -1,5 +1,10 @@
 # LG OLED & LCD Service Menu + Tips
 
+### Warning For The Squeamish
+My tv is a refurb so I am not concerned with the warranty.<br>
+However, there is a chance that using the service menu "could" void your warranty.<br>
+You have been warned.
+
 ### Includes
 - Initial setup tips to minimize data sharing and ads
 - Full Service Menu on C3 & G3 without using power only or factory mode
