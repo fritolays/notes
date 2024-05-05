@@ -130,6 +130,7 @@ You have been warned.
 	- Set GSR Enable to Off
 <br>![GSR](https://raw.githubusercontent.com/fritolays/notes/main/lg_oled/images/service_menu_02-oled_gsr.jpg "GSR")
 1. Goto System 1
+	- I left this one on as it seems to disable control of the screen brightness and locks it to 100%
 	- Set Dimming to Off
 <br>![Dimming](https://raw.githubusercontent.com/fritolays/notes/main/lg_oled/images/service_menu_03-system1_dimming.jpg "Dimming")
 1. Now just exit the Service Menu
