@@ -1,8 +1,32 @@
 # Bambu A1
+### Useful Links
+- https://wiki.bambulab.com/en/a1/manual/a1-firmware-release-history
+- https://wiki.bambulab.com/en/a1/manual/intro-a1
+- https://wiki.bambulab.com/en/a1/maintenance/printer
+- https://wiki.bambulab.com/en/a1/manual/faq
 
+### Print Options
+##### Filament Tangle Detection
+- If filament on spool is stuck; and when PTFE Filament Hub spring is compressed
+- "Air Printing" or a tangle will be detected
+- https://wiki.bambulab.com/en/ams-lite/manual/filament-tangle-monitoring-intro
+<br><br>![A1 Filament Hub](images/a1-filament_hub.webp "A1 Filament Hub")
+<br><br>![A1 Filament Hub](images/a1-filament_hub.gif "A1 Filament Hub")
+
+##### Nozzle Clumping Detection
+- Detects when filament has built up on the extruder
+- Also why the print head seems to do something weird on layer 3
+- https://wiki.bambulab.com/en/a1-mini/manual/nozzle-warp-detection
+<br><br>![A1 Nozzle Clumping](images/a1-nozzle_clumping.webp "A1 Nozzle Clumping")
+<br><br>![A1 Clumping Detection](images/a1-nozzle_clumping.gif "A1 Clumping Detection")
+
+##### Build Plate Position Detection
+- Detects if a build plate is positioned properly.
+- https://wiki.bambulab.com/en/a1-mini/manual/build-plate-detection
+<br><br>![A1 Nozzle Clumping](images/a1-plate_position.webp "A1 Nozzle Clumping")
+<br><br>![A1 Plate Position Detection](images/a1-plate_position.gif "A1 Plate Position Detection")
 
 # Bambu AMS Lite
-
 ### Teardown & Other Internal Images
 - https://wiki.bambulab.com/en/ams/maintenance/ams-lite-body
 - https://wiki.bambulab.com/en/ams/maintenance/ams-lite-com
