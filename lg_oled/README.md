@@ -91,12 +91,12 @@ You have been warned.
 	- If device is NOT auto-detected
 		- Try removing the device filter
 			- Hit Refresh and check the Device dropdown
-		- Try visiting https://<tv-ip>:3001
+		- Try visiting https://tv_ip_goes_here:3001
 			- Should see Hello world
 			- If not check tv settings, connection and if same network
 <br>![CC LG Controller](https://raw.githubusercontent.com/fritolays/notes/main/lg_oled/images/cc_04-lg_controller.jpg "CC LG Controller")
 1. Be sure to allow ColorControl access on the tv
-	- A message box will pop up 
+	- A message box will pop up
 <br>![Allow Device](https://raw.githubusercontent.com/fritolays/notes/main/lg_oled/images/allow_device.jpg "Allow Device")
 	- Confirm its working by using Settings... -> Test power off/on
 <br>![Test Power off/on](https://raw.githubusercontent.com/fritolays/notes/main/lg_oled/images/cc_06-lg_test.jpg "Test Power off/on")
