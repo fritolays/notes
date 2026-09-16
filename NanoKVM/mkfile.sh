@@ -1,11 +1,11 @@
 #!/bin/sh
-# mkfimgm.sh - make an empty, formatted disk image of a set size, or mount one
+# mkfile.sh - make an empty, formatted disk image of a set size, or mount one
 # (revision 10)
 #
 # For the Sipeed NanoKVM, which presents image files to the host PC as USB
 # drives. Images up to 4g are formatted FAT32 (busybox mkdosfs), larger ones
 # exFAT (mkfs.exfat from exfatprogs), and are named after their size and
-# format, e.g. disc-4g-fat32.img. With -m an image is loop-mounted on the
+# format, e.g. disc-4g-fat32.iso. With -m an image is loop-mounted on the
 # NanoKVM itself, so files can be copied onto it; running -m again unmounts
 # it. The image the NanoKVM is presenting is never formatted or mounted, and
 # an existing image is only overwritten once the user confirms.
@@ -28,7 +28,7 @@ while [ ${#DLABEL} -gt 11 ]; do DLABEL=${DLABEL#?}; done
 
 usage() {
     cat <<HELP
-mkfimgm - make an empty, formatted disk image (FAT32 or exFAT), or mount one
+mkfile - make an empty, formatted disk image (FAT32 or exFAT), or mount one
 
 Usage: ${0##*/} [-s SIZE] [-l LABEL] [-o NAME]   make an image
        ${0##*/} -m FILE                          mount or unmount one
@@ -40,26 +40,29 @@ Usage: ${0##*/} [-s SIZE] [-l LABEL] [-o NAME]   make an image
   -l LABEL  volume label, truncated to 11 characters  (default: $DLABEL)
             ASCII characters only.
   -o NAME   output file name                          (default: $STAMP)
-            saved as NAME-SIZE-FORMAT.img, with SIZE in its largest whole
-            unit, so -s 4096m -o disc makes disc-4g-fat32.img.
-            A NAME ending in .img is used as it is, with nothing added.
+            saved as NAME-SIZE-FORMAT.iso, with SIZE in its largest whole
+            unit, so -s 4096m -o disc makes disc-4g-fat32.iso.
+            A NAME ending in .iso or .img is used as it is, with nothing
+            added: -o disc.img makes exactly disc.img.
             If NAME is a folder, the image gets the default name in it.
   -m FILE   mount image FILE, extension included, on a new folder in the
             current directory named after it without that extension, so
-            disc-2g-fat32.img mounts on ./disc-2g-fat32. Run -m on the same
+            disc-2g-fat32.iso mounts on ./disc-2g-fat32. Run -m on the same
             FILE to unmount it and remove the folder. Takes no other options.
   -h        show this help
 
 The -o default is the current Unix time in microseconds, and the -l
 default is its last 11 digits.
+The extension is only a name: the NanoKVM mounts either, but only .iso
+files can be uploaded through its web interface.
 The output directory must have enough free space for the whole image,
 counting the space of an existing image that is overwritten.
 An existing image is only overwritten if you answer y when asked.
 The image the NanoKVM is presenting to the computer is never formatted
 or mounted here.
 
-Example: ${0##*/} -s 2g -l BACKUP -o disc   (makes disc-2g-fat32.img)
-         ${0##*/} -m disc-2g-fat32.img      (mounts it on ./disc-2g-fat32)
+Example: ${0##*/} -s 2g -l BACKUP -o disc   (makes disc-2g-fat32.iso)
+         ${0##*/} -m disc-2g-fat32.iso      (mounts it on ./disc-2g-fat32)
 HELP
     exit 0
 }
@@ -196,19 +199,19 @@ fi
 
 # ---- output file -------------------------------------------------------
 
-# NAME-SIZE-FORMAT.img with SIZE in its largest whole unit (4096m is 4g); a
-# folder gets the default name in it, and a NAME ending in .img is used as is
+# NAME-SIZE-FORMAT.iso with SIZE in its largest whole unit (4096m is 4g); a
+# folder gets the default name in it, and .iso or .img on NAME is kept as is
 n=$((num << bits)) unit=
 for u in k m g t; do
     [ $((n % 1024)) -eq 0 ] || break
     n=$((n >> 10)) unit=$u
 done
 if [ -d "$NAME" ]; then
-    OUT=${NAME%/}/$STAMP-$n$unit-$fmt.img
+    OUT=${NAME%/}/$STAMP-$n$unit-$fmt.iso
 else
     case "$NAME" in
-        *.[iI][mM][gG]) OUT=$NAME ;;
-        *)              OUT=$NAME-$n$unit-$fmt.img ;;
+        *.[iI][sS][oO]|*.[iI][mM][gG]) OUT=$NAME ;;
+        *)                             OUT=$NAME-$n$unit-$fmt.iso ;;
     esac
 fi
 case "$OUT" in -*) OUT=./$OUT ;; esac   # so no tool reads the name as an option
